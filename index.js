@@ -12,6 +12,10 @@ const {
 
 var version="";
 var outputStream;
+var outInterface="bonding1";
+var publicNetworkaddress = "138.94.51.0/24";
+var privateNetworkAddress = "100.100.51.0/24";
+var multiplicationFactor=4;
 
 function getOutputStream(){
     return outputStream;
@@ -37,11 +41,28 @@ function generateChainRules(multiplicationFactor,privateNetwork){
     }
 }
 
+function calculatePortsPerUser(multiplicationFactor){
+    return parseInt((65535-1024)/multiplicationFactor);
+}
+
+
+function generateNatRules(multiplicationFactor,outInternetInterface,publicNetworkaddress,privateNetworkAddress){
+    for(let i=0; i< multiplicationFactor;i++){
+        appendOutputStream(generateNewNatTCPFirewallRule(version,i,outInternetInterface,publicNetworkaddress,privateNetworkAddress, (i * calculatePortsPerUser(multiplicationFactor) ) + 1024 , (i * calculatePortsPerUser(multiplicationFactor)) + 1023 + calculatePortsPerUser(multiplicationFactor) ));
+        appendOutputStream(generateNewNatUDPFirewallRule(version,i,outInternetInterface,publicNetworkaddress,privateNetworkAddress, (i * calculatePortsPerUser(multiplicationFactor) ) + 1024 , (i * calculatePortsPerUser(multiplicationFactor)) + 1023 + calculatePortsPerUser(multiplicationFactor) ));
+        appendOutputStream(generateNewNatMasqueradeFirewallRule(version,i,outInternetInterface,privateNetworkAddress ));
+    }
+}
+
 setVersion();
 createOutputStream();
 
-generateChainRules(5,"100.100.51.0/24");
+console.log()
 
+generateChainRules(multiplicationFactor,privateNetworkAddress);
+generateNatRules(multiplicationFactor,outInterface,publicNetworkaddress,privateNetworkAddress);
+
+console.log("Ports per User " + calculatePortsPerUser(10));
 console.log(getOutputStream());
 
 
