@@ -13,7 +13,7 @@ const {
 var version;
 var outputStream;
 var outInterface="bonding1";
-var publicNetworkaddress = "138.94.50.0/25"
+var publicNetworkAddress = "138.94.50.0/25"
 var multiplicationFactor=10;
 
 function getOutputStream(){
@@ -31,12 +31,12 @@ function createVersion(){
 }
 
 function appendOutputStream(command){
-    outputStream+="\n"+command;
+    outputStream+="\n"+command+"\n";
 }
 
 function generateChainRules(multiplicationFactor,lastTwoOctetsPublicNetwork){
     for(let i=0;i<multiplicationFactor;i++){
-        appendOutputStream(generateNewNATFirewallRule(version,i,"100."+(64+i)+"."+lastTwoOctetsPublicNetwork+"/"+getCIDRinNetworkAddress(publicNetworkaddress)));
+        appendOutputStream(generateNewNATFirewallRule(version,i,"100."+(64+i)+"."+lastTwoOctetsPublicNetwork+"/"+getCIDRinNetworkAddress(publicNetworkAddress)));
     }
 }
 
@@ -57,8 +57,8 @@ createOutputStream();
 
 console.log()
 
-generateChainRules(multiplicationFactor,getLastTwoOctetsInNetworkAddress(publicNetworkaddress));
-generateNatRules(multiplicationFactor,outInterface,publicNetworkaddress,getLastTwoOctetsInNetworkAddress(publicNetworkaddress));
+generateChainRules(multiplicationFactor,getLastTwoOctetsInNetworkAddress(publicNetworkAddress));
+generateNatRules(multiplicationFactor,outInterface,publicNetworkAddress,getLastTwoOctetsInNetworkAddress(publicNetworkAddress));
 
 console.log(getOutputStream());
 
