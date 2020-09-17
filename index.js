@@ -14,7 +14,7 @@ var version;
 var outputStream;
 var outInterface="bonding1";
 var publicNetworkAddress = "138.94.50.0/25"
-var multiplicationFactor=10;
+var multiplicationFactor=5;
 
 function getOutputStream(){
     return outputStream;
