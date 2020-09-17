@@ -31,13 +31,18 @@ function appendOutputStream(command){
     outputStream+="\n"+command;
 }
 
+function generateChainRules(multiplicationFactor,privateNetwork){
+    for(let i=0;i<multiplicationFactor;i++){
+        appendOutputStream(generateNewNATFirewallRule(version,i,privateNetwork));
+    }
+}
 
 setVersion();
 createOutputStream();
 
+generateChainRules(5,"100.100.51.0/24");
 
-
-
+console.log(getOutputStream());
 
 
 
