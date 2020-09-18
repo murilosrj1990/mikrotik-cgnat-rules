@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { getCIDRinNetworkAddress,
     getLastTwoOctetsInNetworkAddress,
      } = require('./util-functions');
