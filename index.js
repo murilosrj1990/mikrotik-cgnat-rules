@@ -9,7 +9,7 @@ const {
     generateNewNatMasqueradeFirewallRule
 } = require('./generate-rules-functions');
 
-const config = require("./parametersRules.json");
+const config = require("./config/parametersRules.json");
 
 var version;
 var outputStream;
