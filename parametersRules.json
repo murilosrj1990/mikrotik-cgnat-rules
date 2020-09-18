@@ -1,0 +1,5 @@
+{
+    "publicNetworkAddress":"YOUR-PUBLIC-NETWORK-ADDRESS",
+    "outInternetInterface":"YOUR-OUT-INTERFACE",
+    "multiplicationFactor":"YOUR-MULTIPLICATION-FACTOR"
+}

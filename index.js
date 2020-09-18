@@ -9,12 +9,13 @@ const {
     generateNewNatMasqueradeFirewallRule
 } = require('./generate-rules-functions');
 
+const config = require("./parametersRules.json");
 
 var version;
 var outputStream;
-var outInterface="bonding1";
-var publicNetworkAddress = "138.94.50.0/25"
-var multiplicationFactor=5;
+var outInterface=config.outInternetInterface;
+var publicNetworkAddress = config.publicNetworkAddress;
+var multiplicationFactor= config.multiplicationFactor;
 
 function getOutputStream(){
     return outputStream;
