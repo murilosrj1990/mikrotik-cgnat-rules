@@ -29,7 +29,7 @@ function createOutputStream(){
 
 function createVersion(){
     let date = new Date();
-    version="Version "+date.toLocaleDateString()+"_"+date.toLocaleTimeString();
+    version="#Version "+date.toLocaleDateString()+"_"+date.toLocaleTimeString();
 }
 
 function appendOutputStream(command){
